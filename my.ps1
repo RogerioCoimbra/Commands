@@ -1,15 +1,62 @@
 $Parametro01 = $args[0]
+$Parametro02 = $args[1]
 
 if (!$Parametro01){
     Write-Host("Commands:");
+    Write-Host("my      : Help");
+    Write-Host("my vm   : ViewMemory");
+    Write-Host("my sh   : ScanHealth");
+    Write-Host("my cd   : CheckDisk");
+    Write-Host("my d    : Defrag");
     Write-Host("");
-    Write-Host("m      : Help");
-    Write-Host("m vm   : ViewMemory");
-    Write-Host("m sh   : ScanHealth");
-    Write-Host("m cd   : CheckDisk");
-    Write-Host("m d    : Defrag");
+	Write-Host("Projetos:");
+    Write-Host("my p    : Projetos");
+	Write-Host("my c    : Commands");
+    Write-Host("my a9   : Angular9");
+	Write-Host("my a9 b : Angular9 BackEnd");
+	Write-Host("my a9 f : Angular9 FrontEnd");
+    #Write-Host("my m    : Maestro");
+	#Write-Host("my m s  : Maestro Sdk");
+	#Write-Host("my m s  : Maestro WebApp");
     Write-Host("");
 }
+
+if ($Parametro01 -eq "c"){
+    Set-Location("C:\Projetos\Commands");
+}
+
+if ($Parametro01 -eq "p"){
+    Set-Location("C:\Projetos");
+}
+
+if ($Parametro01 -eq "a9"){
+	if ($Parametro02 -eq "b"){
+		Set-Location("C:\Projetos\Angular09\src\backend");
+	}
+
+	if ($Parametro02 -eq "f"){
+		Set-Location("C:\Projetos\Angular09\src\frontend");
+	}
+
+	if (!$Parametro02){
+		Set-Location("C:\Projetos\Angular09");
+	}
+}
+
+if ($Parametro01 -eq "m"){
+	if ($Parametro02 -eq "s"){
+		Set-Location("C:\Projetos\carrefour-maestro-source\FONTES DEV\Sdk");
+	}
+
+	if ($Parametro02 -eq "w"){
+		Set-Location("C:\Projetos\carrefour-maestro-source\FONTES DEV\webApp");
+	}
+
+	if (!$Parametro02){
+		Set-Location("C:\Projetos\carrefour-maestro-source");
+	}
+}
+
 
 if ($Parametro01 -eq "vm"){
     Write-Host("View Memory:");
