@@ -8,7 +8,8 @@ if (!$Parametro01){
     Write-Host("my vm    : ViewMemory");
     Write-Host("my sh    : ScanHealth");
     Write-Host("my cd    : CheckDisk");
-    Write-Host("my d     : Defrag");
+    Write-Host("my de    : Defrag");
+	Write-Host("my do    : Docker");
     Write-Host("");
 	Write-Host("Projetos:");
     Write-Host("my p     : Projetos");
@@ -97,6 +98,11 @@ if ($Parametro01 -eq "vm"){
     docker ps
     Write-Host("");
     Write-Host("****************************************************************************");
+    Write-Host("                               Docker List images");
+    Write-Host("****************************************************************************");
+    docker images
+    Write-Host("");
+    Write-Host("****************************************************************************");
     Write-Host("                               Hyper-V");
     Write-Host("****************************************************************************");
     Get-VM
@@ -135,7 +141,7 @@ if ($Parametro01 -eq "cd"){
     chkdsk E: /scan
 }
 
-if ($Parametro01 -eq "d"){
+if ($Parametro01 -eq "de"){
     Write-Host("Defrag:");
     Write-Host("");
     Write-Host("****************************************************************************");
@@ -152,4 +158,19 @@ if ($Parametro01 -eq "d"){
     Write-Host("                               Desfragmentando E:");
     Write-Host("****************************************************************************");
     Defrag E: /U /V /D /O
+}
+
+if ($Parametro01 -eq "do"){
+	clear
+    Write-Host("Docker:");
+    Write-Host("");
+	Write-Host("****************************************************************************");
+    Write-Host("                               List containers");
+    Write-Host("****************************************************************************");
+    docker ps
+    Write-Host("");
+	Write-Host("****************************************************************************");
+    Write-Host("                               List images");
+    Write-Host("****************************************************************************");
+	docker images
 }
