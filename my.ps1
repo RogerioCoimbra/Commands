@@ -10,6 +10,8 @@ if (!$Parametro01){
     Write-Host("my cd    : CheckDisk");
     Write-Host("my de    : Defrag");
 	Write-Host("my do    : Docker");
+	Write-Host("my del   : Clear logs");
+	Write-Host("my ma    : Preventive Maintenance");
     Write-Host("");
 	Write-Host("Projetos:");
     Write-Host("my p     : Projetos");
@@ -83,8 +85,47 @@ if ($Parametro01 -eq "m"){
 	}
 }
 
+function Get-MyDel {
+	clear
+    Write-Host("Clear Logs:");
+	
+    Write-Host("");
+	Write-Host("****************************************************************************");
+    Write-Host("                               Delete Logs");
+    Write-Host("****************************************************************************");
+	
+	Remove-Item C:\ProgramData\Razer\Synapse3\Log\*.log -ErrorAction SilentlyContinue
+	Remove-Item C:\ProgramData\Razer\Synapse3\Log\archive\*.log -ErrorAction SilentlyContinue
+	Remove-Item "C:\ProgramData\Razer\Razer Central\Logs\*.*" -ErrorAction SilentlyContinue
+	Remove-Item C:\ProgramData\Razer\GameManager\Logs\*.* -ErrorAction SilentlyContinue
+	Remove-Item C:\Windows\Logs\CBS\*.log -ErrorAction SilentlyContinue
+	Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log -ErrorAction SilentlyContinue
+	Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log -ErrorAction SilentlyContinue
+	Remove-Item C:\Windows\Temp\*.log -ErrorAction SilentlyContinue
+	Remove-Item C:\Users\roger\AppData\Local\Temp\*.log -ErrorAction SilentlyContinue
 
-if ($Parametro01 -eq "vm"){
+	Write-Host("");
+	Write-Host("Done");
+
+    Write-Host("");
+	Write-Host("****************************************************************************");
+    Write-Host("                               List Logs Remaining");
+    Write-Host("****************************************************************************");
+	
+	Get-ChildItem C:\ProgramData\Razer\Synapse3\Log\*.log
+	Get-ChildItem C:\ProgramData\Razer\Synapse3\Log\archive\*.log
+	Get-ChildItem "C:\ProgramData\Razer\Razer Central\Logs\*.*"
+	Get-ChildItem C:\ProgramData\Razer\GameManager\Logs\*.*
+	Get-ChildItem C:\Windows\Logs\CBS\*.log
+	Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log
+	Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log
+	Get-ChildItem C:\Windows\Temp\*.log
+	Get-ChildItem C:\Users\roger\AppData\Local\Temp\*.log
+}
+
+
+
+function Get-MyVm {
 	clear
     Write-Host("View Memory:");
     Write-Host("");
@@ -109,7 +150,7 @@ if ($Parametro01 -eq "vm"){
     Get-VM
 }
 
-if ($Parametro01 -eq "sh"){
+function Get-MySh {
     Write-Host("Scan Health:");
     Write-Host("");
     Write-Host("****************************************************************************");
@@ -123,7 +164,7 @@ if ($Parametro01 -eq "sh"){
     DISM /Online /Cleanup-Image /ScanHealth
 }
 
-if ($Parametro01 -eq "cd"){
+function Get-MyCd {
     Write-Host("Check Disk:");
     Write-Host("");
     Write-Host("****************************************************************************");
@@ -142,7 +183,7 @@ if ($Parametro01 -eq "cd"){
     chkdsk E: /scan
 }
 
-if ($Parametro01 -eq "de"){
+function Get-MyDe {
     Write-Host("Defrag:");
     Write-Host("");
     Write-Host("****************************************************************************");
@@ -161,7 +202,7 @@ if ($Parametro01 -eq "de"){
     Defrag E: /U /V /D /O
 }
 
-if ($Parametro01 -eq "do"){
+function Get-MyDo {
 	clear
     Write-Host("Docker:");
     Write-Host("");
@@ -175,3 +216,43 @@ if ($Parametro01 -eq "do"){
     Write-Host("****************************************************************************");
 	docker images
 }
+
+
+
+
+
+
+
+if ($Parametro01 -eq "vm"){
+	Get-MyVm
+}
+
+if ($Parametro01 -eq "sh"){
+	Get-MySh
+}
+
+if ($Parametro01 -eq "cd"){
+	Get-MyCd
+}
+
+if ($Parametro01 -eq "de"){
+	Get-MyDe
+}
+
+if ($Parametro01 -eq "do"){
+	Get-MyDo
+}
+
+if ($Parametro01 -eq "del"){
+	Get-MyDel
+}
+
+if ($Parametro01 -eq "ma"){
+	clear
+	Get-MyDel
+	Get-MyDe
+	Get-MySh
+	Get-MyCd
+}
+
+
