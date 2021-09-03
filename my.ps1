@@ -21,6 +21,7 @@ if (!$Parametro01) {
     Write-Host("my a9    : Angular9");
     Write-Host("my a9 b  : Angular9 BackEnd");
     Write-Host("my a9 f  : Angular9 FrontEnd");
+    Write-Host("my pr    : PredicaoBaseFusivel");
     Write-Host("");
 }
 
@@ -50,38 +51,8 @@ if ($Parametro01 -eq "a9") {
     }
 }
 
-if ($Parametro01 -eq "m") {
-    if ($Parametro02 -eq "s") {
-        Set-Location("C:\Projetos\carrefour-maestro-source\FONTES DEV\Sdk");
-		
-        if ($Parametro03 -eq "i") {
-            Write-Host("npm run InstalarMaestro");
-            npm run InstalarMaestro
-        }
-		
-        if ($Parametro03 -eq "a") {
-            Write-Host("npm run AtualizarMaestro");
-            npm run AtualizarMaestro
-        }
-    }
-
-    if ($Parametro02 -eq "w") {
-        Set-Location("C:\Projetos\carrefour-maestro-source\FONTES DEV\webApp");
-		
-        if ($Parametro03 -eq "i") {
-            Write-Host("npm run InstalarMaestro");
-            npm run InstalarMaestro
-        }
-		
-        if ($Parametro03 -eq "a") {
-            Write-Host("npm run AtualizarMaestro");
-            npm run AtualizarMaestro
-        }
-    }
-
-    if (!$Parametro02) {
-        Set-Location("C:\Projetos\carrefour-maestro-source");
-    }
+if ($Parametro01 -eq "pr") {
+    Set-Location("C:\Projetos\4-Enel\PredicaoBaseFusivel");
 }
 
 function Get-MyDel {
@@ -101,7 +72,13 @@ function Get-MyDel {
     Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\Temp\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\Windows\INF\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\Windows\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\Windows\System32\LogFiles\setupcln\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\Windows\System32\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Local\Temp\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log -ErrorAction SilentlyContinue
+    Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
