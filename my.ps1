@@ -79,13 +79,27 @@ function Get-MyDel {
     Remove-Item C:\Users\roger\AppData\Local\Temp\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
-
+    Remove-Item C:\Windows\debug\WIA\*.log -ErrorAction SilentlyContinue
+    
     Write-Host("");
     Write-Host("Done");
 
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               List Logs Remaining");
+    Write-Host("                               Delete Trash");
+    Write-Host("****************************************************************************");
+    
+    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\Profit\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
+    Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    
+    Write-Host("");
+    Write-Host("Done");
+
+    Write-Host("");
+    Write-Host("****************************************************************************");
+    Write-Host("                               List Logs and Trashs Remaining");
     Write-Host("****************************************************************************");
 	
     Get-ChildItem C:\ProgramData\Razer\Synapse3\Log\*.log
@@ -96,7 +110,22 @@ function Get-MyDel {
     Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log
     Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log
     Get-ChildItem C:\Windows\Temp\*.log
+    Get-ChildItem C:\Windows\INF\*.log
+    Get-ChildItem C:\Windows\*.log
+    Get-ChildItem C:\Windows\System32\LogFiles\setupcln\*.log
+    Get-ChildItem C:\Windows\System32\*.log
     Get-ChildItem C:\Users\roger\AppData\Local\Temp\*.log
+    Get-ChildItem C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log
+    Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
+    Get-ChildItem C:\Windows\debug\WIA\*.log
+
+    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\Profit\database\assets\*
+    Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
+    Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
+    Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
+
+    Write-Host("");
+    Write-Host("Done");
 }
 
 
