@@ -22,6 +22,7 @@ if (!$Parametro01) {
     Write-Host("my a9 b  : Angular9 BackEnd");
     Write-Host("my a9 f  : Angular9 FrontEnd");
     Write-Host("my pr    : PredicaoBaseFusivel");
+    Write-Host("my k     : Kafka");
     Write-Host("");
 }
 
@@ -53,6 +54,10 @@ if ($Parametro01 -eq "a9") {
 
 if ($Parametro01 -eq "pr") {
     Set-Location("C:\Projetos\4-Enel\PredicaoBaseFusivel");
+}
+
+if ($Parametro01 -eq "k") {
+    Set-Location("C:\Projetos\Kafka");
 }
 
 function Get-MyDel {
@@ -93,7 +98,9 @@ function Get-MyDel {
     Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
-    
+    Remove-Item "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe" -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
+
     Write-Host("");
     Write-Host("Done");
 
@@ -123,6 +130,8 @@ function Get-MyDel {
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
     Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
+    Get-ChildItem "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe"
+    Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
 
     Write-Host("");
     Write-Host("Done");
