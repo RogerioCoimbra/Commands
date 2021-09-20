@@ -21,8 +21,12 @@ if (!$Parametro01) {
     Write-Host("my a9    : Angular9");
     Write-Host("my a9 b  : Angular9 BackEnd");
     Write-Host("my a9 f  : Angular9 FrontEnd");
-    Write-Host("my pr    : PredicaoBaseFusivel");
     Write-Host("my k     : Kafka");
+    Write-Host("");
+    Write-Host("Projetos Cap:");
+    Write-Host("my pr    : PredicaoBaseFusivel");
+    Write-Host("my ke    : Kafka eTerraConnector");
+    Write-Host("my ca    : CaminhoEletricoSHS");
     Write-Host("");
 }
 
@@ -52,12 +56,20 @@ if ($Parametro01 -eq "a9") {
     }
 }
 
+if ($Parametro01 -eq "k") {
+    Set-Location("C:\Projetos\Kafka");
+}
+
 if ($Parametro01 -eq "pr") {
     Set-Location("C:\Projetos\4-Enel\PredicaoBaseFusivel");
 }
 
-if ($Parametro01 -eq "k") {
-    Set-Location("C:\Projetos\Kafka");
+if ($Parametro01 -eq "ke") {
+    Set-Location("C:\Projetos\4-Enel\KafkaeterraConnector");
+}
+
+if ($Parametro01 -eq "ca") {
+    Set-Location("C:\Projetos\4-Enel\CaminhoEletricoSHS");
 }
 
 function Get-MyDel {
