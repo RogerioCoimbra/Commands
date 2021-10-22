@@ -8,6 +8,7 @@ if (!$Parametro01) {
     Write-Host("my       : Help");
     Write-Host("my vm    : ViewMemory");
     Write-Host("my sh    : ScanHealth");
+    Write-Host("my ac    : AnalyzeComponent");
     Write-Host("my cd    : CheckDisk");
     Write-Host("my de    : Defrag");
     Write-Host("my do    : Docker");
@@ -97,6 +98,7 @@ function Get-MyDel {
     Remove-Item C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\debug\WIA\*.log -ErrorAction SilentlyContinue
+    Remove-Item "C:\Users\roger\AppData\Local\Docker\*log*.txt" -ErrorAction SilentlyContinue
     
     Write-Host("");
     Write-Host("Done");
@@ -112,6 +114,7 @@ function Get-MyDel {
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
@@ -137,6 +140,7 @@ function Get-MyDel {
     Get-ChildItem C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log
     Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     Get-ChildItem C:\Windows\debug\WIA\*.log
+    Get-ChildItem "C:\Users\roger\AppData\Local\Docker\*log*.txt"
 
     Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\Profit\database\assets\*
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
@@ -144,6 +148,7 @@ function Get-MyDel {
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe"
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
+    Get-ChildItem C:\Users\roger\.nuget\packages\* 
 
     Write-Host("");
     Write-Host("Done");
@@ -187,8 +192,19 @@ function Get-MySh {
     Write-Host("****************************************************************************");
     Write-Host("                               Verificando componentes");
     Write-Host("****************************************************************************");
-    DISM /Online /Cleanup-Image /ScanHealth
+    Dism /Online /Cleanup-Image /StartComponentCleanup
+    Dism /Online /Cleanup-Image /RestoreHealth
 }
+
+function Get-MyAc {
+    Write-Host("Analyze Component:");
+    Write-Host("****************************************************************************");
+    Write-Host("                               Verificando componentes");
+    Write-Host("****************************************************************************");
+    Dism /Online /Cleanup-Image /AnalyzeComponentStore
+}
+
+
 
 function Get-MyCd {
     Write-Host("Check Disk:");
@@ -261,6 +277,10 @@ if ($Parametro01 -eq "cd") {
     Get-MyCd
 }
 
+if ($Parametro01 -eq "ac") {
+    Get-MyAc
+}
+
 if ($Parametro01 -eq "de") {
     Get-MyDe
 }
@@ -279,6 +299,7 @@ if ($Parametro01 -eq "ma") {
     Get-MyDe
     Get-MySh
     Get-MyCd
+    Get-MyAc
 }
 
 
