@@ -1,6 +1,5 @@
 $Parametro01 = $args[0]
 $Parametro02 = $args[1]
-$Parametro03 = $args[2]
 
 if (!$Parametro01) {
     Write-Host([System.Net.Dns]::GetHostName());
@@ -74,7 +73,7 @@ if ($Parametro01 -eq "ca") {
 }
 
 function Get-MyDel {
-    clear
+    Clear-Host
     Write-Host("Clear Logs:");
 	
     Write-Host("");
@@ -99,6 +98,9 @@ function Get-MyDel {
     Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\debug\WIA\*.log -ErrorAction SilentlyContinue
     Remove-Item "C:\Users\roger\AppData\Local\Docker\*log*.txt" -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*.log -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz -ErrorAction SilentlyContinue
+    #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
     
     Write-Host("");
     Write-Host("Done");
@@ -108,7 +110,7 @@ function Get-MyDel {
     Write-Host("                               Delete Trash");
     Write-Host("****************************************************************************");
     
-    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\Profit\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\ClearTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
@@ -141,8 +143,11 @@ function Get-MyDel {
     Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     Get-ChildItem C:\Windows\debug\WIA\*.log
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker\*log*.txt"
+    Get-ChildItem C:\Users\roger\AppData\Roaming\Evernote\logs\*.log
+    Get-ChildItem C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz
+    #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse
 
-    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\Profit\database\assets\*
+    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\ClearTrader\database\assets\*
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
     Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
@@ -157,26 +162,26 @@ function Get-MyDel {
 
 
 function Get-MyVm {
-    clear
+    Clear-Host
     Write-Host("View Memory:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               WSL List");
+    Write-Host("                               WSL List (wsl -l -v)");
     Write-Host("****************************************************************************");
     wsl -l -v
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Docker List containers");
+    Write-Host("                               Docker List containers (docker ps -a)");
     Write-Host("****************************************************************************");
     docker ps -a
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Docker List images");
+    Write-Host("                               Docker List images (docker images)");
     Write-Host("****************************************************************************");
     docker images
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Hyper-V");
+    Write-Host("                               Hyper-V (Get-VM)");
     Write-Host("****************************************************************************");
     Get-VM
 }
@@ -185,23 +190,45 @@ function Get-MySh {
     Write-Host("Scan Health:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               verificando arquivos");
+    Write-Host("                               Verificando arquivos (SFC /Scannow)");
     Write-Host("****************************************************************************");
     SFC /Scannow
     Write-Host("");
     Write-Host("****************************************************************************");
     Write-Host("                               Verificando componentes");
     Write-Host("****************************************************************************");
-    Dism /Online /Cleanup-Image /StartComponentCleanup
-    Dism /Online /Cleanup-Image /RestoreHealth
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /CheckHealth");
+    Dism.exe /online /Cleanup-Image /CheckHealth
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /ScanHealth");
+    Dism.exe /online /Cleanup-Image /ScanHealth
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /RestoreHealth");
+    Dism.exe /online /Cleanup-Image /RestoreHealth
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /CheckHealth");
+    Dism.exe /online /Cleanup-Image /CheckHealth
 }
 
 function Get-MyAc {
     Write-Host("Analyze Component:");
+    Write-Host("");
     Write-Host("****************************************************************************");
     Write-Host("                               Verificando componentes");
     Write-Host("****************************************************************************");
-    Dism /Online /Cleanup-Image /AnalyzeComponentStore
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /AnalyzeComponentStore");
+    Dism.exe /online /Cleanup-Image /AnalyzeComponentStore
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /StartComponentCleanup");
+    Dism.exe /online /Cleanup-Image /StartComponentCleanup
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /SPSuperseded");
+    Dism.exe /online /Cleanup-Image /SPSuperseded
+    Write-Host("");
+    Write-Host("Dism.exe /online /Cleanup-Image /AnalyzeComponentStore");
+    Dism.exe /online /Cleanup-Image /AnalyzeComponentStore
 }
 
 
@@ -210,17 +237,17 @@ function Get-MyCd {
     Write-Host("Check Disk:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Verificando C:");
+    Write-Host("                               Verificando C: (chkdsk C: /scan)");
     Write-Host("****************************************************************************");
     chkdsk C: /scan
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Verificando D:");
+    Write-Host("                               Verificando D: (chkdsk D: /scan)");
     Write-Host("****************************************************************************");
     chkdsk D: /scan
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Verificando E:");
+    Write-Host("                               Verificando E: (chkdsk E: /scan)");
     Write-Host("****************************************************************************");
     chkdsk E: /scan
 }
@@ -229,32 +256,32 @@ function Get-MyDe {
     Write-Host("Defrag:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando C:");
+    Write-Host("                               Desfragmentando C: (Defrag C: /U /V /D /O)");
     Write-Host("****************************************************************************");
     Defrag C: /U /V /D /O
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando D:");
+    Write-Host("                               Desfragmentando D: (Defrag D: /U /V /D /O)");
     Write-Host("****************************************************************************");
     Defrag D: /U /V /D /O
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando E:");
+    Write-Host("                               Desfragmentando E: (Defrag E: /U /V /D /O)");
     Write-Host("****************************************************************************");
     Defrag E: /U /V /D /O
 }
 
 function Get-MyDo {
-    clear
+    Clear-Host
     Write-Host("Docker:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               List containers");
+    Write-Host("                               List containers (docker ps -a)");
     Write-Host("****************************************************************************");
     docker ps -a
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               List images");
+    Write-Host("                               List images (docker images)");
     Write-Host("****************************************************************************");
     docker images
 }
@@ -294,12 +321,15 @@ if ($Parametro01 -eq "del") {
 }
 
 if ($Parametro01 -eq "ma") {
-    clear
-    Get-MyDel
-    Get-MyDe
-    Get-MySh
-    Get-MyCd
-    Get-MyAc
+    Clear-Host
+    Get-MyDel   #Delete Logs
+    Write-Host("");
+    Get-MyDe    #Defrag
+    Write-Host("");
+    Get-MyCd    #Check Disk:
+    Write-Host("");
+    Get-MySh    #Scan Health:
+    Write-Host("");
+    Get-MyAc    #Analyze Component:
+    Write-Host("");
 }
-
-
