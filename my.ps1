@@ -101,7 +101,7 @@ function Get-MyDel {
     Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz -ErrorAction SilentlyContinue
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
-    
+        
     Write-Host("");
     Write-Host("Done");
 
@@ -117,6 +117,7 @@ function Get-MyDel {
     Remove-Item "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
@@ -154,6 +155,7 @@ function Get-MyDel {
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe"
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
     Get-ChildItem C:\Users\roger\.nuget\packages\* 
+    Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*
 
     Write-Host("");
     Write-Host("Done");
