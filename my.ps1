@@ -118,6 +118,7 @@ function Get-MyDel {
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
@@ -156,6 +157,7 @@ function Get-MyDel {
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
     Get-ChildItem C:\Users\roger\.nuget\packages\* 
     Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*
+    Get-ChildItem "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*"
 
     Write-Host("");
     Write-Host("Done");
