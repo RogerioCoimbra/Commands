@@ -18,16 +18,16 @@ if (!$Parametro01) {
     Write-Host("my p     : Projetos");
     Write-Host("my c     : Challenges");
     Write-Host("my co    : Commands");
-    Write-Host("my a9    : Angular9");
-    Write-Host("my a9 b  : Angular9 BackEnd");
-    Write-Host("my a9 f  : Angular9 FrontEnd");
-    Write-Host("my k     : Kafka");
     Write-Host("");
     Write-Host("Projetos Cap:");
     Write-Host("my pr    : PredicaoBaseFusivel");
-    Write-Host("my ke    : Kafka eTerraConnector");
+    Write-Host("my os    : OscilografiaCTEEP");
     Write-Host("my ca    : CaminhoEletricoSHS");
     Write-Host("");
+}
+
+if ($Parametro01 -eq "p") {
+    Set-Location("C:\Projetos");
 }
 
 if ($Parametro01 -eq "c") {
@@ -38,34 +38,12 @@ if ($Parametro01 -eq "co") {
     Set-Location("C:\Projetos\Commands");
 }
 
-if ($Parametro01 -eq "p") {
-    Set-Location("C:\Projetos");
-}
-
-if ($Parametro01 -eq "a9") {
-    if ($Parametro02 -eq "b") {
-        Set-Location("C:\Projetos\Angular09\src\backend");
-    }
-
-    if ($Parametro02 -eq "f") {
-        Set-Location("C:\Projetos\Angular09\src\frontend");
-    }
-
-    if (!$Parametro02) {
-        Set-Location("C:\Projetos\Angular09");
-    }
-}
-
-if ($Parametro01 -eq "k") {
-    Set-Location("C:\Projetos\Kafka");
-}
-
 if ($Parametro01 -eq "pr") {
     Set-Location("C:\Projetos\4-Enel\PredicaoBaseFusivel");
 }
 
-if ($Parametro01 -eq "ke") {
-    Set-Location("C:\Projetos\4-Enel\KafkaeterraConnector");
+if ($Parametro01 -eq "os") {
+    Set-Location("C:\Projetos\4-Enel\OscilografiaCTEEP");
 }
 
 if ($Parametro01 -eq "ca") {
