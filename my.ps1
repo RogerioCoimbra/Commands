@@ -59,13 +59,7 @@ function Get-MyDel {
     Write-Host("                               Delete Logs");
     Write-Host("****************************************************************************");
 	
-    Remove-Item C:\ProgramData\Razer\Synapse3\Log\*.log -ErrorAction SilentlyContinue
-    Remove-Item C:\ProgramData\Razer\Synapse3\Log\archive\*.log -ErrorAction SilentlyContinue
-    Remove-Item "C:\ProgramData\Razer\Razer Central\Logs\*.*" -ErrorAction SilentlyContinue
-    Remove-Item C:\ProgramData\Razer\GameManager\Logs\*.* -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\Logs\CBS\*.log -ErrorAction SilentlyContinue
-    Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log -ErrorAction SilentlyContinue
-    Remove-Item C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\Temp\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\INF\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\*.log -ErrorAction SilentlyContinue
@@ -95,7 +89,8 @@ function Get-MyDel {
     Remove-Item "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
-    Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue
+    if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue}
+    Write-Host("oioi12");
     Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
@@ -106,13 +101,7 @@ function Get-MyDel {
     Write-Host("                               List Logs and Trashs Remaining");
     Write-Host("****************************************************************************");
 	
-    Get-ChildItem C:\ProgramData\Razer\Synapse3\Log\*.log
-    Get-ChildItem C:\ProgramData\Razer\Synapse3\Log\archive\*.log
-    Get-ChildItem "C:\ProgramData\Razer\Razer Central\Logs\*.*"
-    Get-ChildItem C:\ProgramData\Razer\GameManager\Logs\*.*
     Get-ChildItem C:\Windows\Logs\CBS\*.log
-    Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\*.log
-    Get-ChildItem C:\Users\roger\AppData\Local\Razer\Synapse3\Log\archive\*.log
     Get-ChildItem C:\Windows\Temp\*.log
     Get-ChildItem C:\Windows\INF\*.log
     Get-ChildItem C:\Windows\*.log
@@ -134,7 +123,8 @@ function Get-MyDel {
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe"
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
     Get-ChildItem C:\Users\roger\.nuget\packages\* 
-    Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*
+    if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*}
+    Write-Host("oioi555");
     Get-ChildItem "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*"
 
     Write-Host("");
