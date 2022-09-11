@@ -1,5 +1,5 @@
 $Parametro01 = $args[0]
-$Parametro02 = $args[1]
+#$Parametro02 = $args[1]
 
 if (!$Parametro01) {
     Write-Host([System.Net.Dns]::GetHostName());
@@ -27,27 +27,27 @@ if (!$Parametro01) {
 }
 
 if ($Parametro01 -eq "p") {
-    Set-Location("C:\Projetos");
+    Set-Location("E:\Projetos");
 }
 
 if ($Parametro01 -eq "c") {
-    Set-Location("C:\Projetos\Challenges");
+    Set-Location("E:\Projetos\Challenges");
 }
 
 if ($Parametro01 -eq "co") {
-    Set-Location("C:\Projetos\Commands");
+    Set-Location("E:\Projetos\Commands");
 }
 
 if ($Parametro01 -eq "pr") {
-    Set-Location("C:\Projetos\4-Enel\PredicaoBaseFusivel");
+    Set-Location("E:\Projetos\4-Enel\PredicaoBaseFusivel");
 }
 
 if ($Parametro01 -eq "os") {
-    Set-Location("C:\Projetos\4-Enel\OscilografiaCTEEP");
+    Set-Location("E:\Projetos\4-Enel\OscilografiaCTEEP");
 }
 
 if ($Parametro01 -eq "ca") {
-    Set-Location("C:\Projetos\4-Enel\CaminhoEletricoSHS");
+    Set-Location("E:\Projetos\4-Enel\CaminhoEletricoSHS");
 }
 
 function Get-MyDel {
@@ -67,11 +67,11 @@ function Get-MyDel {
     Remove-Item C:\Windows\System32\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Local\Temp\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log -ErrorAction SilentlyContinue
-    Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\debug\WIA\*.log -ErrorAction SilentlyContinue
     Remove-Item "C:\Users\roger\AppData\Local\Docker\*log*.txt" -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*.log -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz -ErrorAction SilentlyContinue
+    #Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
         
     Write-Host("");
@@ -82,7 +82,7 @@ function Get-MyDel {
     Write-Host("                               Delete Trash");
     Write-Host("****************************************************************************");
     
-    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\ClearTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
@@ -90,8 +90,7 @@ function Get-MyDel {
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue}
-    Write-Host("oioi12");
-    Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
+        Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
@@ -109,14 +108,14 @@ function Get-MyDel {
     Get-ChildItem C:\Windows\System32\*.log
     Get-ChildItem C:\Users\roger\AppData\Local\Temp\*.log
     Get-ChildItem C:\ProgramData\Microsoft\EdgeUpdate\Log\*.log
-    Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     Get-ChildItem C:\Windows\debug\WIA\*.log
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker\*log*.txt"
     Get-ChildItem C:\Users\roger\AppData\Roaming\Evernote\logs\*.log
     Get-ChildItem C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz
+    #Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse
 
-    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\ClearTrader\database\assets\*
+    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\*
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
     Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
@@ -124,7 +123,6 @@ function Get-MyDel {
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
     Get-ChildItem C:\Users\roger\.nuget\packages\* 
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*}
-    Write-Host("oioi555");
     Get-ChildItem "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*"
 
     Write-Host("");
