@@ -88,7 +88,7 @@ function Get-MyDel {
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
-    Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
+    #Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue}
         Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
 
@@ -121,7 +121,7 @@ function Get-MyDel {
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
     Get-ChildItem "C:\Users\roger\AppData\Local\Docker Desktop Installer\update*.exe"
     Get-ChildItem "C:\Program Files (x86)\Google\Update\Download\*"
-    Get-ChildItem C:\Users\roger\.nuget\packages\* 
+    #Get-ChildItem C:\Users\roger\.nuget\packages\* 
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*}
     Get-ChildItem "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*"
 

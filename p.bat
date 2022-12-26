@@ -1,2 +1,5 @@
 @echo off
-if "%1"=="" cd C:\Projetos
+if "%1"=="" (
+    cd E:\Projetos
+    E:
+)

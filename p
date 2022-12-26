@@ -2,7 +2,7 @@
 
 if ["$1" = ""]
 then
-    cd /c/Projetos/
+    cd /e/Projetos/
 fi
 
 exec bash
