@@ -20,7 +20,6 @@ if (!$Parametro01) {
     Write-Host("my co    : Commands");
     Write-Host("");
     Write-Host("Projetos Cap:");
-    Write-Host("my pr    : PredicaoBaseFusivel");
     Write-Host("my os    : OscilografiaCTEEP");
     Write-Host("my ca    : CaminhoEletricoSHS");
     Write-Host("");
@@ -36,10 +35,6 @@ if ($Parametro01 -eq "c") {
 
 if ($Parametro01 -eq "co") {
     Set-Location("E:\Projetos\Commands");
-}
-
-if ($Parametro01 -eq "pr") {
-    Set-Location("E:\Projetos\4-Enel\PredicaoBaseFusivel");
 }
 
 if ($Parametro01 -eq "os") {
@@ -176,9 +171,6 @@ function Get-MySh {
     Write-Host("");
     Write-Host("Dism.exe /online /Cleanup-Image /RestoreHealth");
     Dism.exe /online /Cleanup-Image /RestoreHealth
-    Write-Host("");
-    Write-Host("Dism.exe /online /Cleanup-Image /CheckHealth");
-    Dism.exe /online /Cleanup-Image /CheckHealth
 }
 
 function Get-MyAc {
@@ -188,17 +180,14 @@ function Get-MyAc {
     Write-Host("                               Verificando componentes");
     Write-Host("****************************************************************************");
     Write-Host("");
-    Write-Host("Dism.exe /online /Cleanup-Image /AnalyzeComponentStore");
-    Dism.exe /online /Cleanup-Image /AnalyzeComponentStore
+    Write-Host("Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase");
+    Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
     Write-Host("");
-    Write-Host("Dism.exe /online /Cleanup-Image /StartComponentCleanup");
-    Dism.exe /online /Cleanup-Image /StartComponentCleanup
-    Write-Host("");
-    Write-Host("Dism.exe /online /Cleanup-Image /SPSuperseded");
-    Dism.exe /online /Cleanup-Image /SPSuperseded
-    Write-Host("");
-    Write-Host("Dism.exe /online /Cleanup-Image /AnalyzeComponentStore");
-    Dism.exe /online /Cleanup-Image /AnalyzeComponentStore
+    Write-Host("Dism.exe /online /Cleanup-Image /SPSuperseded /HideSP");
+    Dism.exe /online /Cleanup-Image /SPSuperseded /HideSP
+    #Write-Host("");
+    #Write-Host("Dism.exe /online /Cleanup-Image /AnalyzeComponentStore");
+    #Dism.exe /online /Cleanup-Image /AnalyzeComponentStore
 }
 
 
@@ -226,19 +215,22 @@ function Get-MyDe {
     Write-Host("Defrag:");
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando C: (Defrag C: /U /V /D /O)");
+    Write-Host("                               Desfragmentando C: (Defrag C: /H /O)");
     Write-Host("****************************************************************************");
-    Defrag C: /U /V /D /O
+    Defrag C: /H /O
+    Optimize-Volume -DriveLetter C
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando D: (Defrag D: /U /V /D /O)");
+    Write-Host("                               Desfragmentando D: (Defrag D: /H /O)");
     Write-Host("****************************************************************************");
-    Defrag D: /U /V /D /O
+    Defrag D: /H /O
+    Optimize-Volume -DriveLetter D
     Write-Host("");
     Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando E: (Defrag E: /U /V /D /O)");
+    Write-Host("                               Desfragmentando E: (Defrag E: /H /O)");
     Write-Host("****************************************************************************");
-    Defrag E: /U /V /D /O
+    Defrag E: /H /O
+    Optimize-Volume -DriveLetter E
 }
 
 function Get-MyDo {
@@ -297,8 +289,8 @@ if ($Parametro01 -eq "ma") {
     Get-MyDe    #Defrag
     Write-Host("");
     Get-MyCd    #Check Disk:
-    Write-Host("");
-    Get-MySh    #Scan Health:
+    #Write-Host("");
+    #Get-MySh    #Scan Health:
     Write-Host("");
     Get-MyAc    #Analyze Component:
     Write-Host("");
