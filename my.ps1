@@ -68,7 +68,7 @@ function Get-MyDel {
     Remove-Item C:\Users\roger\AppData\Roaming\Evernote\logs\*log.*.gz -ErrorAction SilentlyContinue
     #Remove-Item "C:\Program Files (x86)\TeamViewer\*.log" -ErrorAction SilentlyContinue
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
-        
+    
     Write-Host("");
     Write-Host("Done");
 
@@ -77,7 +77,8 @@ function Get-MyDel {
     Write-Host("                               Delete Trash");
     Write-Host("****************************************************************************");
     
-    Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item C:\Users\roger\Pictures\Screenshots\*
+    #Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 } | Select-Object $_ | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
@@ -110,7 +111,8 @@ function Get-MyDel {
     #Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse
 
-    Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\*
+    Get-ChildItem C:\Users\roger\Pictures\Screenshots\*
+    #Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\*
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
     Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
     Get-ChildItem "C:\ProgramData\NVIDIA Corporation\Downloader" -Directory | Where-Object {$_.Name.Length -eq 32 }
@@ -199,11 +201,11 @@ function Get-MyCd {
     Write-Host("                               Verificando C: (chkdsk C: /scan)");
     Write-Host("****************************************************************************");
     chkdsk C: /scan
-    Write-Host("");
-    Write-Host("****************************************************************************");
-    Write-Host("                               Verificando D: (chkdsk D: /scan)");
-    Write-Host("****************************************************************************");
-    chkdsk D: /scan
+    # Write-Host("");
+    # Write-Host("****************************************************************************");
+    # Write-Host("                               Verificando D: (chkdsk D: /scan)");
+    # Write-Host("****************************************************************************");
+    # chkdsk D: /scan
     Write-Host("");
     Write-Host("****************************************************************************");
     Write-Host("                               Verificando E: (chkdsk E: /scan)");
@@ -219,12 +221,12 @@ function Get-MyDe {
     Write-Host("****************************************************************************");
     Defrag C: /H /O
     Optimize-Volume -DriveLetter C
-    Write-Host("");
-    Write-Host("****************************************************************************");
-    Write-Host("                               Desfragmentando D: (Defrag D: /H /O)");
-    Write-Host("****************************************************************************");
-    Defrag D: /H /O
-    Optimize-Volume -DriveLetter D
+    # Write-Host("");
+    # Write-Host("****************************************************************************");
+    # Write-Host("                               Desfragmentando D: (Defrag D: /H /O)");
+    # Write-Host("****************************************************************************");
+    # Defrag D: /H /O
+    #Optimize-Volume -DriveLetter D
     Write-Host("");
     Write-Host("****************************************************************************");
     Write-Host("                               Desfragmentando E: (Defrag E: /H /O)");
@@ -289,9 +291,9 @@ if ($Parametro01 -eq "ma") {
     Get-MyDe    #Defrag
     Write-Host("");
     Get-MyCd    #Check Disk:
-    #Write-Host("");
+    Write-Host("");
     #Get-MySh    #Scan Health:
-    Write-Host("");
-    Get-MyAc    #Analyze Component:
-    Write-Host("");
+    #Write-Host("");
+    #Get-MyAc    #Analyze Component:
+    #Write-Host("");
 }
