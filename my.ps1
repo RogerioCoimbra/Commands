@@ -20,8 +20,7 @@ if (!$Parametro01) {
     Write-Host("my co    : Commands");
     Write-Host("");
     Write-Host("Projetos Cap:");
-    Write-Host("my os    : OscilografiaCTEEP");
-    Write-Host("my ca    : CaminhoEletricoSHS");
+    Write-Host("my gas    : Gen-AI-Sommelier");
     Write-Host("");
 }
 
@@ -37,12 +36,8 @@ if ($Parametro01 -eq "co") {
     Set-Location("E:\Projetos\Commands");
 }
 
-if ($Parametro01 -eq "os") {
-    Set-Location("E:\Projetos\4-Enel\OscilografiaCTEEP");
-}
-
-if ($Parametro01 -eq "ca") {
-    Set-Location("E:\Projetos\4-Enel\CaminhoEletricoSHS");
+if ($Parametro01 -eq "gas") {
+    Set-Location("E:\Projetos\4-GPA\Gen-AI-Sommelier");
 }
 
 function Get-MyDel {
@@ -77,7 +72,7 @@ function Get-MyDel {
     Write-Host("                               Delete Trash");
     Write-Host("****************************************************************************");
     
-    Remove-Item C:\Users\roger\Pictures\Screenshots\*
+    if(Test-Path("C:\Users\roger\Pictures\Screenshots\")) {Remove-Item C:\Users\roger\Pictures\Screenshots\*}
     #Remove-Item C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\Windows\SoftwareDistribution\Download\* -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item C:\ProgramData\Intel\DSA\Downloads\* -Force -Recurse -ErrorAction SilentlyContinue
@@ -86,7 +81,8 @@ function Get-MyDel {
     Remove-Item "C:\Program Files (x86)\Google\Update\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
     #Remove-Item C:\Users\roger\.nuget\packages\* -Force -Recurse -ErrorAction SilentlyContinue
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Remove-Item C:\Users\roger\AppData\Local\Temp\WinGet\* -Force -Recurse -ErrorAction SilentlyContinue}
-        Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*" -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item "E:\Emulation\System\LaunchBox\Updates\*" -Force -Recurse -ErrorAction SilentlyContinue
 
     Write-Host("");
     Write-Host("Done");
@@ -111,7 +107,7 @@ function Get-MyDel {
     #Get-ChildItem "C:\Program Files (x86)\TeamViewer\*.log"
     #Get-ChildItem "C:\ProgramData\Battle.net\*.log" -Recurse
 
-    Get-ChildItem C:\Users\roger\Pictures\Screenshots\*
+    if(Test-Path("C:\Users\roger\Pictures\Screenshots\")) { Get-ChildItem C:\Users\roger\Pictures\Screenshots\*}
     #Get-ChildItem C:\Users\roger\AppData\Roaming\Nelogica\XPTrader\database\assets\*
     Get-ChildItem C:\Windows\SoftwareDistribution\Download\*
     Get-ChildItem C:\ProgramData\Intel\DSA\Downloads\*
@@ -121,6 +117,7 @@ function Get-MyDel {
     #Get-ChildItem C:\Users\roger\.nuget\packages\* 
     if(Test-Path("C:\Users\roger\AppData\Local\Temp\WinGet\")) {Get-ChildItem C:\Users\roger\AppData\Local\Temp\WinGet\*}
     Get-ChildItem "C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\*"
+    Get-ChildItem "E:\Emulation\System\LaunchBox\Updates\*"
 
     Write-Host("");
     Write-Host("Done");
